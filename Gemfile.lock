@@ -20,6 +20,10 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.0.rc4)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
     activejob (4.2.6)
       activesupport (= 4.2.6)
       globalid (>= 0.3.0)
@@ -37,13 +41,12 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    annotate (2.7.0)
+      activerecord (>= 3.2, < 6.0)
+      rake (~> 10.4)
     arel (6.0.3)
-    autoprefixer-rails (6.3.3.1)
-      execjs
     awesome_print (1.6.1)
-    bourbon (4.2.6)
-      sass (~> 3.4)
-      thor (~> 0.19)
+    bcrypt (3.1.11)
     builder (3.2.2)
     bullet (5.0.0)
       activesupport (>= 3.0.0)
@@ -52,24 +55,7 @@ GEM
       bundler (~> 1.2)
       thor (~> 0.18)
     byebug (8.2.2)
-    capybara (2.6.2)
-      addressable
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (~> 2.0)
-    capybara-webkit (1.8.0)
-      capybara (>= 2.3.0, < 2.7.0)
-      json
     coderay (1.1.1)
-    coffee-rails (4.1.1)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.1.x)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -87,30 +73,16 @@ GEM
       dotenv (= 2.1.0)
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
-    execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.6.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    flutie (2.0.0)
-    formulaic (0.3.0)
-      activesupport
-      capybara
-      i18n
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
-    high_voltage (2.4.0)
-    honeybadger (2.5.3)
     i18n (0.7.0)
-    jquery-rails (4.1.1)
-      rails-dom-testing (>= 1, < 3)
-      railties (>= 4.2.0)
-      thor (>= 0.14, < 2.0)
     json (1.8.3)
-    launchy (2.4.3)
-      addressable (~> 2.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -119,10 +91,6 @@ GEM
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
-    neat (1.7.4)
-      bourbon (>= 4.0)
-      sass (>= 3.3)
-    newrelic_rpm (3.15.0.314)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
@@ -143,6 +111,7 @@ GEM
     rack-canonical-host (0.1.0)
       addressable
       rack (~> 1.0)
+    rack-cors (0.4.0)
     rack-mini-profiler (0.9.9.2)
       rack (>= 1.2.0)
     rack-test (0.6.3)
@@ -172,10 +141,9 @@ GEM
       activesupport (= 4.2.6)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.1.0)
+    rake (10.5.0)
     recipient_interceptor (0.1.2)
       mail
-    refills (0.1.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -194,18 +162,8 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     safe_yaml (1.0.4)
-    sass (3.4.21)
-    sass-rails (5.0.4)
-      railties (>= 4.0.0, < 5.0)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    simple_form (3.2.1)
-      actionpack (> 4, < 5.1)
-      activemodel (> 4, < 5.1)
     simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -224,16 +182,9 @@ GEM
       sprockets (>= 3.0.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.2)
     timecop (0.8.0)
-    title (0.0.5)
-      i18n
-      rails (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.7.2)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
     uniform_notifier (1.9.0)
     web-console (3.1.1)
       activemodel (>= 4.2)
@@ -243,32 +194,21 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    xpath (2.0.0)
-      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  autoprefixer-rails
+  active_model_serializers (= 0.10.0.rc4)
+  annotate
   awesome_print
-  bourbon (~> 4.2.0)
+  bcrypt (~> 3.1.0)
   bullet
   bundler-audit
-  capybara-webkit
-  coffee-rails (~> 4.1.0)
   database_cleaner
   delayed_job_active_record
   dotenv-rails
   factory_girl_rails
-  flutie
-  formulaic
-  high_voltage
-  honeybadger
-  jquery-rails
-  launchy
-  neat (~> 1.7.0)
-  newrelic_rpm (>= 3.9.8)
   normalize-rails (~> 3.0.0)
   pg
   pry-byebug
@@ -276,21 +216,17 @@ DEPENDENCIES
   puma
   quiet_assets
   rack-canonical-host
+  rack-cors
   rack-mini-profiler
   rack-timeout
   rails (~> 4.2.0)
   recipient_interceptor
-  refills
   rspec-rails (~> 3.4.0)
-  sass-rails (~> 5.0)
   shoulda-matchers
-  simple_form
   simplecov
   spring
   spring-commands-rspec
   timecop
-  title
-  uglifier
   web-console
   webmock
 

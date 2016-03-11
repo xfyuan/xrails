@@ -2,30 +2,20 @@ source "https://rubygems.org"
 
 ruby "2.3.0"
 
-gem "autoprefixer-rails"
-gem "bourbon", "~> 4.2.0"
-gem "coffee-rails", "~> 4.1.0"
+gem "active_model_serializers", "0.10.0.rc4"
+gem "bcrypt", "~> 3.1.0"
 gem "delayed_job_active_record"
-gem "flutie"
-gem "high_voltage"
-gem "honeybadger"
-gem "jquery-rails"
-gem "neat", "~> 1.7.0"
-gem "newrelic_rpm", ">= 3.9.8"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
+gem "rack-cors", :require => "rack/cors"
 gem "rails", "~> 4.2.0"
 gem "recipient_interceptor"
-gem "sass-rails", "~> 5.0"
-gem "simple_form"
-gem "title"
-gem "uglifier"
 
 group :development do
+  gem "annotate"
   gem "quiet_assets"
-  gem "refills"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
@@ -47,10 +37,7 @@ group :development, :staging do
 end
 
 group :test do
-  gem "capybara-webkit"
   gem "database_cleaner"
-  gem "formulaic"
-  gem "launchy"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "timecop"
