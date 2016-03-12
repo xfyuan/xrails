@@ -1,3 +1,6 @@
+machine:
+  environment:
+    SECRET_KEY_BASE: f882ca5935ec798da10449b7714328cc62cd17e643224d0d9cda12b11d30c0b74d955e7237fbec5e14f33eca58fa0401cf2f6134d8cc4512641938098304c6c8
 database:
   override:
     - bin/setup
