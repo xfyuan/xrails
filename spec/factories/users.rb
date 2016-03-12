@@ -5,6 +5,7 @@ FactoryGirl.define do
     sequence(:lastname)  { |n| "Tree#{n}" }
     password             'nopassword123'
     password_confirmation 'nopassword123'
+    authentication_token 'authentication_token'
     info '{}'
   end
 end
