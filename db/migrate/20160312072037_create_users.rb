@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :firstname
       t.string :lastname
       t.string :password_digest, null: false
-      t.string :authentication_token, null: false
+      t.string :authentication_token
       t.jsonb :info, default: '{}'
 
       t.timestamps null: false
