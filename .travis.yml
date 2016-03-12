@@ -7,8 +7,7 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 install:
-  - gem install bundler --conservative
-  - bundle check || bundle install
+  - bin/setup
 branches:
   only:
     - master
