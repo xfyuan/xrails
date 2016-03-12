@@ -3,10 +3,12 @@ before_install:
   - "echo 'gem: --no-document' > ~/.gemrc"
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - psql -c 'create database travis_ci_test;' -U postgres
+before_script:
   - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
 install:
-  - bin/setup
+  - gem install bundler --conservative
+  - bundle check || bundle install
 branches:
   only:
     - master
