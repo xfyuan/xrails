@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+10.times do
+  pwd = FFaker::Internet.password
+  User.create!({
+    email: FFaker::Internet.email,
+    password: pwd,
+    password_confirmation: pwd,
+    firstname: FFaker::Name.first_name,
+    lastname: FFaker::Name.last_name,
+    authentication_token: FFaker::Internet.password,
+    info: '{}'
+  })
+end
