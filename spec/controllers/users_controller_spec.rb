@@ -67,4 +67,40 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe 'PUT #update' do
+    context 'with valid params' do
+      let(:new_user) { attributes_for(:user, email: 'new_email@abc.com') }
+      before do
+        put :update, id: user.id, user: new_user
+      end
+
+      it { should respond_with 200 }
+
+      it 'renders the json response for updted user' do
+        expect(json_response[:email]).to eq new_user[:email]
+      end
+    end
+
+    context 'with invalid params' do
+      before do
+        put :update, id: user.id, user: invalid_attributes
+      end
+
+      it { should respond_with 422 }
+
+      it 'renders an errors json' do
+        expect(json_response).to have_key(:errors)
+        expect(json_response[:errors][:email]).to include "is invalid"
+      end
+    end
+  end
+
+  describe 'DELETE #delete' do
+    before do
+      delete :destroy, id: user.id
+    end
+
+      it { should respond_with 204 }
+  end
 end
