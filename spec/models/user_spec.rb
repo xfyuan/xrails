@@ -17,6 +17,7 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:authentication_token) }
 
     it { should validate_uniqueness_of(:email) }
+    it { should validate_uniqueness_of(:authentication_token) }
 
     it { should validate_confirmation_of(:password) }
 
@@ -29,6 +30,24 @@ RSpec.describe User, type: :model do
     it { should_not allow_value('user@abc.', 'user@foo,com', 'user@foo+bar.com').for(:email) }
 
     it { should have_secure_password }
+  end
 
+  describe '#generate_authentication_token!' do
+    let(:user) { create :user }
+
+    before do
+      allow(user).to receive(:auth_token) { 'uniquetoken1234' }
+    end
+
+    it 'generate a unique token' do
+      user.generate_authentication_token!
+      expect(user.authentication_token).to eq 'uniquetoken1234'
+    end
+
+    it 'generate another token when one already has been taken' do
+      existed_user = create :user, authentication_token: 'anothertoken1234'
+      user.generate_authentication_token!
+      expect(user.authentication_token).not_to eq existed_user.authentication_token
+    end
   end
 end

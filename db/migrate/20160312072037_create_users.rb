@@ -12,5 +12,6 @@ class CreateUsers < ActiveRecord::Migration
     end
 
     add_index :users, :info, using: :gin
+    add_index :users, :authentication_token, unique: true
   end
 end
