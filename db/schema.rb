@@ -33,14 +33,14 @@ ActiveRecord::Schema.define(version: 20160312072037) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                             null: false
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "password_digest",                   null: false
-    t.string   "authentication_token",              null: false
-    t.jsonb    "info",                 default: {}
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "email",                limit: 50,              null: false
+    t.string   "firstname",            limit: 30
+    t.string   "lastname",             limit: 30
+    t.string   "password_digest"
+    t.string   "authentication_token"
+    t.jsonb    "info",                            default: {}
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

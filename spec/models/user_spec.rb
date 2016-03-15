@@ -14,7 +14,6 @@ RSpec.describe User, type: :model do
     it { should be_valid }
 
     it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:authentication_token) }
 
     it { should validate_uniqueness_of(:email) }
     it { should validate_uniqueness_of(:authentication_token) }

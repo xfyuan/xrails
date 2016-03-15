@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validates_presence_of :email, :authentication_token
+  validates_presence_of :email
   validates_uniqueness_of :email, :authentication_token
 
   validates_length_of :email, in: 6..50
