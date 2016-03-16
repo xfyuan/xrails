@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
     let(:user) { create :user }
 
     before do
-      allow(user).to receive(:auth_token) { 'uniquetoken1234' }
+      allow(user).to receive(:authentication_token) { 'uniquetoken1234' }
     end
 
     it 'generate a unique token' do
