@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     end
 
     def user_params
-      params.required(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password)
     end
 
     def refresh_authentication_token!(user)
