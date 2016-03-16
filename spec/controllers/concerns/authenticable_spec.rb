@@ -20,4 +20,19 @@ RSpec.describe Authenticable, type: :controller do
       expect(authentication.current_user.authentication_token).to eq user.authentication_token
     end
   end
+
+  describe '#authenticate_with_token' do
+    before do
+      allow(authentication).to receive(:current_user) { nil }
+      allow(authentication).to receive(:response) { response }
+      allow(response).to receive(:response_code) { 401 }
+      allow(response).to receive(:body) { {'errors' => 'Not authenticated'}.to_json }
+    end
+
+    it { should respond_with 401 }
+
+    it 'renders a json error' do
+      expect(json_response[:errors]).to eq 'Not authenticated'
+    end
+  end
 end

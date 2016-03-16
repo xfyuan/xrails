@@ -6,6 +6,10 @@ RSpec.describe UsersController, type: :controller do
   let(:valid_attributes) { attributes_for :user }
   let(:invalid_attributes) { attributes_for :user, email: nil }
 
+  before do
+    api_authorization_header user.authentication_token
+  end
+
   describe 'GET #index' do
     before do
       get :index
