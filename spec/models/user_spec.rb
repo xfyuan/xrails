@@ -31,21 +31,16 @@ RSpec.describe User, type: :model do
     it { should have_secure_password }
   end
 
-  describe '#generate_authentication_token!' do
+  describe 'ensure generate a authentication token' do
     let(:user) { create :user }
-
-    before do
-      allow(user).to receive(:authentication_token) { 'uniquetoken1234' }
-    end
+    let(:existed_user) { create :user }
 
     it 'generate a unique token' do
-      user.generate_authentication_token!
-      expect(user.authentication_token).to eq 'uniquetoken1234'
+      expect(user.authentication_token).not_to eq(nil)
+      expect(user.authentication_token).to be_a(String)
     end
 
     it 'generate another token when one already has been taken' do
-      existed_user = create :user, authentication_token: 'anothertoken1234'
-      user.generate_authentication_token!
       expect(user.authentication_token).not_to eq existed_user.authentication_token
     end
   end

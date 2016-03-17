@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  before_save :ensure_authentication_token
+
   validates_presence_of :email
   validates_uniqueness_of :email, :authentication_token
 
@@ -18,8 +20,12 @@ class User < ActiveRecord::Base
   end
 
   private
-
     def auth_token
       SecureRandom.uuid.tr('-', '')
     end
+
+    def ensure_authentication_token
+      generate_authentication_token! if authentication_token.blank?
+    end
+
 end
