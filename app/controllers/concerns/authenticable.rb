@@ -1,7 +1,7 @@
 module Authenticable
   def current_user
     authenticate_with_http_token do |token, options|
-      @current_user ||= User.find_by(authentication_token: token)
+      @current_user ||= User.find_by_token(token)
     end
   end
 

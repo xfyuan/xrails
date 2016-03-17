@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_save :ensure_authentication_token
+  include TokenAuthenticable
 
   validates_presence_of :email
   validates_uniqueness_of :email, :authentication_token
@@ -12,20 +12,5 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   has_secure_password
-
-  def generate_authentication_token!
-    begin
-      self.authentication_token = auth_token
-    end while self.class.exists?(authentication_token: authentication_token)
-  end
-
-  private
-    def auth_token
-      SecureRandom.uuid.tr('-', '')
-    end
-
-    def ensure_authentication_token
-      generate_authentication_token! if authentication_token.blank?
-    end
 
 end
