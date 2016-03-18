@@ -1,5 +1,6 @@
 [![Circle CI](https://circleci.com/gh/xfyuan/xrails.svg?style=svg)](https://circleci.com/gh/xfyuan/xrails)
 [![Travis CI](https://travis-ci.org/xfyuan/xrails.svg?branch=master)](https://travis-ci.org/xfyuan/xrails)
+[![Code Climate](https://codeclimate.com/github/xfyuan/xrails/badges/gpa.svg)](https://codeclimate.com/github/xfyuan/xrails)
 
 # Xrails
 
