@@ -54,7 +54,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'render the json response for user created' do
         expect(json_response).to be_a(Hash)
-        expect(json_response[:email]).to eq valid_attributes[:email]
+        expect(json_response_data[:attributes][:email]).to eq valid_attributes[:email]
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'renders an errors json' do
         expect(json_response).to have_key(:errors)
-        expect(json_response[:errors][:email]).to include "can't be blank"
+        expect(json_response_errors[:email]).to include "can't be blank"
       end
     end
   end
@@ -82,7 +82,7 @@ RSpec.describe UsersController, type: :controller do
       it { should respond_with 200 }
 
       it 'renders the json response for updted user' do
-        expect(json_response[:email]).to eq new_user[:email]
+        expect(json_response_data[:attributes][:email]).to eq new_user[:email]
       end
     end
 
@@ -95,7 +95,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'renders an errors json' do
         expect(json_response).to have_key(:errors)
-        expect(json_response[:errors][:email]).to include "is invalid"
+        expect(json_response_errors[:email]).to include "is invalid"
       end
     end
   end

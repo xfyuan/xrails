@@ -14,7 +14,7 @@ RSpec.describe SessionsController, type: :controller do
 
       it 'returns the user with given credential' do
         user.reload
-        expect(json_response[:authentication_token]).to eq user.authentication_token
+        expect(json_response_data[:attributes][:authentication_token]).to eq user.authentication_token
       end
     end
 

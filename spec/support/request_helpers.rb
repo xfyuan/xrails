@@ -3,6 +3,14 @@ module Request
     def json_response
       @json_response ||= JSON.parse(response.body, symbolize_names: true)
     end
+
+    def json_response_data
+      @json_response_data ||= JSON.parse(response.body, symbolize_names: true)[:data]
+    end
+
+    def json_response_errors
+      @json_response_errors ||= JSON.parse(response.body, symbolize_names: true)[:errors]
+    end
   end
 
   module HeadersHelpers
