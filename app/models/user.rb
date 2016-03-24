@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include TokenAuthenticable
 
+  store_accessor :info, :blog, :github, :twitter
+
   validates_presence_of :email
   validates_uniqueness_of :email, :authentication_token
 

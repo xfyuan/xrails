@@ -14,7 +14,10 @@
     password_confirmation: pwd,
     firstname: FFaker::Name.first_name,
     lastname: FFaker::Name.last_name,
-    authentication_token: FFaker::Internet.password,
-    info: '{}'
+    info: {
+      github: "http://www.github.com/#{FFaker::Internet.user_name}",
+      twitter: "@#{FFaker::Internet.user_name}",
+      blog: FFaker::Internet.http_url
+    }
   })
 end
