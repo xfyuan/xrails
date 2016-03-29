@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'validation' do
-    subject(:user) { build :user }
+  subject(:user) { build :user }
 
+  describe 'validation' do
     it { should respond_to(:email) }
     it { should respond_to(:firstname) }
     it { should respond_to(:lastname) }
@@ -33,58 +33,22 @@ RSpec.describe User, type: :model do
   end
 
   describe 'accessor for info field which is jsonb column' do
-    let(:user)        { create :user }
-    let(:new_info)    { '{}'.as_json }
-    let(:new_github)  { FFaker::Internet.http_url }
-    let(:new_twitter) { FFaker::Internet.user_name }
-    let(:new_blog)    { FFaker::Internet.http_url }
-
-    describe '#info accessor' do
-      it 'get info' do
-        expect(user.info).to be_a(Hash)
-        expect{ user.info }.not_to raise_error
-      end
-
-      it 'set info' do
-        user.info = new_info
-        user.save
-        expect(user.info).to eq JSON.parse(new_info)
-      end
+    it '#info.blog accessor' do
+      expect(user).to respond_to('blog')
+      expect(user).to respond_to('blog=')
+      expect{ user.blog }.not_to raise_error
     end
 
-    describe '#github accessor' do
-      it 'get info->attributes' do
-        expect{ user.github }.not_to raise_error
-      end
-
-      it 'set info->attributes' do
-        user.github = new_github
-        user.save
-        expect(user.github).to eq new_github
-      end
+    it '#info.github accessor' do
+      expect(user).to respond_to('github')
+      expect(user).to respond_to('github=')
+      expect{ user.github }.not_to raise_error
     end
 
-    describe '#twitter accessor' do
-      it 'get info->attributes' do
-        expect{ user.twitter }.not_to raise_error
-      end
-
-      it 'set info->attributes' do
-        user.twitter = new_twitter
-        user.save
-        expect(user.twitter).to eq new_twitter
-      end
-    end
-    describe '#blog accessor' do
-      it 'get info->attributes' do
-        expect{ user.blog }.not_to raise_error
-      end
-
-      it 'set info->attributes' do
-        user.blog = new_blog
-        user.save
-        expect(user.blog).to eq new_blog
-      end
+    it '#info.twitter accessor' do
+      expect(user).to respond_to('twitter')
+      expect(user).to respond_to('twitter=')
+      expect{ user.twitter }.not_to raise_error
     end
   end
 end
